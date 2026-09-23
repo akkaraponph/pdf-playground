@@ -97,3 +97,9 @@ Use temporary or externally managed paths and pass them with `-certificate`,
 `-private-key`, and optionally `-chain`.
 
 For details and troubleshooting, see [`../howto/README.md`](../howto/README.md).
+
+
+# ISO
+- https://www.iso.org/standard/75839.html
+
+- https://pdfa.org/resource/iso-32000-2/
