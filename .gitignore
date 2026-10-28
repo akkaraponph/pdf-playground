@@ -6,3 +6,22 @@
 .Spotlight-V100
 .Trashes
 .fseventsd
+
+# Locally generated testing certificates and private keys
+/certs/*
+!/certs/README.md
+!/certs/.gitignore
+
+# Never stage certificate bundles or private-key files anywhere
+*.pem
+*.key
+*.p12
+*.pfx
+*.p8
+*.der
+*.crt
+*.cer
+*.jks
+*.keystore
+__pycache__/
+docs
