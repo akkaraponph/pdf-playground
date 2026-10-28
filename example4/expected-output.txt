@@ -1,0 +1,5 @@
+Original signed PDF: accepted
+Changed amount from 100 USD to 900 USD: rejected
+Failed to verify signature: signature verification failed: pkcs7: Message digest mismatch
+	Expected: 42406809A92EA70BEADA0ADABDDC5A60D435F3F3A2BD3C5E2653D0D778CC963C
+	Actual  : 0797FC3F0AFD3D74CDAED19FE61BE22D2D40C5FED2316BF05465E61F091BA75C
