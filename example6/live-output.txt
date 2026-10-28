@@ -1,0 +1,5 @@
+Created timestamped-live.pdf using an ephemeral signer
+baseline.pdf: timestamp present=false; timestamp trusted=false
+timestamped.pdf: timestamp present=true; timestamp trusted=false
+timestamped-live.pdf: timestamp present=true; timestamp trusted=false
+Timestamp presence alone does not establish TSA trust
