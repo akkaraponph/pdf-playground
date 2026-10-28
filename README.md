@@ -2,18 +2,16 @@
 
 Ten Go examples for learning and blog demonstrations, using `github.com/digitorus/pdfsign v1.0.0`. Requires Go 1.27 or newer. Run commands from the indicated example folder.
 
-| Folder | Topic | Run | Expected result |
-| --- | --- | --- | --- |
-| [example1](example1/README.md) | Sign using PAdES B-T | See folder README for certificate/key/TSA flags | A signed PDF with a signature timestamp |
-| [example2](example2/README.md) | Strict verification | `go run .` | Rejects the included self-signed sample |
-| [example3](example3/README.md) | Diagnose verification failures | `go run .` | Explains certificate and timestamp errors |
-| [example4](example4/README.md) | Detect changed signed content | `go run .` | Original passes; modified signed content fails |
-| [example5](example5/README.md) | Trust a local test CA | `go run .` | Strict verification succeeds using an explicit test root |
-| [example6](example6/README.md) | Compare B-B and B-T timestamps | `go run .` | Shows timestamp presence; optional `-tsa URL` signs a new B-T PDF |
-| [example7](example7/README.md) | Produce a JSON verification report | `go run .` | Structured signature and trust results |
-| [example8](example8/README.md) | Verify a batch of PDFs | `go run .` | Reports valid, modified, and unsigned documents separately |
-| [example9](example9/README.md) | Thai certificate signing | `go run .` | Thai subject and signature metadata survive signing and verification |
-| [example10](example10/README.md) | Chinese certificate signing | `go run .` | Chinese subject and signature metadata survive signing and verification |
+- [Example 1: Sign using PAdES B-T](example1/README.md)
+- [Example 2: Strict verification](example2/README.md)
+- [Example 3: Diagnose verification failures](example3/README.md)
+- [Example 4: Detect changed signed content](example4/README.md)
+- [Example 5: Trust a local test CA](example5/README.md)
+- [Example 6: Compare B-B and B-T timestamps](example6/README.md)
+- [Example 7: Produce a JSON verification report](example7/README.md)
+- [Example 8: Verify a batch of PDFs](example8/README.md)
+- [Example 9: Thai certificate signing](example9/README.md)
+- [Example 10: Chinese certificate signing](example10/README.md)
 
 The root `go.mod` pins v1.0.0 for all ten examples. To add that exact release to another module, use `go get github.com/digitorus/pdfsign@v1.0.0`.
 
@@ -31,12 +29,10 @@ go run ./tools/generate-certs
 
 This creates a local test CA and a matching RSA 2048 signing identity in `certs/`:
 
-| File | Purpose |
-| --- | --- |
-| `certs/signer.key.pem` | Unencrypted PKCS#8 private key, with permissions `0600` |
-| `certs/signer.crt.pem` | Signing certificate, valid for one year |
-| `certs/root.crt.pem` | Public test CA certificate, valid for ten years |
-| `certs/chain.pem` | Signing certificate followed by the test CA certificate |
+- `certs/signer.key.pem`: unencrypted PKCS#8 private key with permissions `0600`.
+- `certs/signer.crt.pem`: signing certificate, valid for one year.
+- `certs/root.crt.pem`: public test CA certificate, valid for ten years.
+- `certs/chain.pem`: signing certificate followed by the test CA certificate.
 
 The generator refuses to overwrite existing credentials. To generate a separate identity, choose a new directory:
 
@@ -120,14 +116,12 @@ python3 tools/audit-pdfs.py
 
 Example 2 intentionally contains an **untrusted test signer**. Acrobat may show “At least one signature has problems”, alongside “Document has not been modified” and “Signer's identity is unknown”. That matches this rejection case: the signed bytes are intact, but the certificate is not trusted. Its embedded timestamp also requires separate TSA validation.
 
-| Case | Integrity | Trust and expected behavior |
-| --- | --- | --- |
-| Examples 1–3 test signatures | Signed content intact | Untrusted signer; strict verification rejects the test identity |
-| `signed.pdf` in examples 4–8 | Signed content intact | Go verification passes with the explicit `exampleN/certs/root.pem`; Acrobat may still warn because it has a separate trust store |
-| `tampered.pdf` in examples 4–8 | Digest mismatch | Intentionally rejected because signed bytes changed |
-| `unsigned.pdf` and Example 1 input | No signature | Intentionally rejected by verification |
-| Example 6 timestamp cases | Signed content intact | Timestamp presence is reported separately from timestamp trust |
-| Example 1 mock-certificate output | Signed content intact | Signer is trusted only when `certs/root.crt.pem` is supplied; timestamp trust remains a separate check |
+- **Examples 1–3 test signatures:** signed content is intact, but the signer is untrusted, so strict verification rejects the test identity.
+- **`signed.pdf` in examples 4–10:** Go verification passes with the example's explicit `certs/root.pem`. Acrobat may still warn because it has a separate trust store.
+- **`tampered.pdf` in examples 4–10:** verification detects a digest mismatch because signed bytes changed.
+- **`unsigned.pdf` and the Example 1 input:** these contain no signature and are rejected.
+- **Example 6 timestamp cases:** timestamp presence is reported separately from timestamp trust.
+- **Example 1 mock certificate output:** the signer is trusted when `certs/root.crt.pem` is supplied; timestamp trust is a separate check.
 
 A passing audit means every file matches its expected case, including intentional failures. It does **not** mean all PDFs have trusted signatures. The audit does not automate Acrobat, modify its trust store, or prove current revocation status. In pdfsign v1.0.0, `Valid()` can be true while `TimestampValid` is false and a timestamp warning is present; inspect both fields when timestamp trust is required. See [verification notes](docs/verification-results.md) for the retest findings.
 
