@@ -1,0 +1,5 @@
+Certificate subject: CN=张伟,O=测试签名有限公司,C=CN
+Signature signer: 张伟
+Signature reason: 中文证书签名测试
+PDF passed strict verification with certs/root.pem
+Signed: signed.pdf; modified rejection case: tampered.pdf
