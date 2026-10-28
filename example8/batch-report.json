@@ -1,0 +1,44 @@
+{
+  "accepted": 1,
+  "rejected": 2,
+  "documents": [
+    {
+      "file": "signed.pdf",
+      "valid": true,
+      "signatures": [
+        {
+          "signer": "PDF playground example signer",
+          "valid": true,
+          "trusted_chain": true,
+          "timestamp_present": false,
+          "timestamp_valid": false
+        }
+      ]
+    },
+    {
+      "file": "tampered.pdf",
+      "valid": false,
+      "signatures": [
+        {
+          "signer": "PDF playground example signer",
+          "valid": false,
+          "trusted_chain": false,
+          "timestamp_present": false,
+          "timestamp_valid": false,
+          "errors": [
+            "Failed to verify signature: signature verification failed: pkcs7: Message digest mismatch\n\tExpected: 38C6885C26638835782B8FDD2BBF0A1908204A98B627A6E83AF9ECE690249C99\n\tActual  : 8B4436426E0329A3AE98AD806664503FC36E7294E0BEFE9ABA962310E55F915A"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "unsigned.pdf",
+      "valid": false,
+      "errors": [
+        "verification failed: document appears to have signatures but none could be processed",
+        "no signatures found"
+      ],
+      "signatures": []
+    }
+  ]
+}
