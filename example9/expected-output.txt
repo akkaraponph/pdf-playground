@@ -1,0 +1,5 @@
+Certificate subject: CN=สมชาย ใจดี,O=บริษัท ทดสอบลายมือชื่อ จำกัด,C=TH
+Signature signer: สมชาย ใจดี
+Signature reason: ทดสอบการลงนามเอกสารภาษาไทย
+PDF passed strict verification with certs/root.pem
+Signed: signed.pdf; modified rejection case: tampered.pdf
