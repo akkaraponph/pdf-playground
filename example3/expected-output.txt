@@ -1,0 +1,7 @@
+Document accepted: false
+Signature 1: Example PDF Signer
+  valid=false trusted-chain=false timestamp-present=true timestamp-valid=false
+  Error: certificate does not have Digital Signature key usage; certificate does not have Non-Repudiation key usage; certificate has no Extended Key Usage extension
+certificate chain could not be verified: x509: certificate signed by unknown authority
+  Warning: Timestamp certificate chain validation failed: x509: “www.freetsa.org (This certificate digitally signs documents and time stamp requests made using the freetsa.org online services)” certificate is not standards compliant
+Diagnosis complete. A rejected signature needs its certificate, usage, and timestamp errors investigated.
