@@ -1,0 +1,2 @@
+PDF passed strict certificate checks with the explicit playground root
+External revocation fetching is disabled for this offline fixture
