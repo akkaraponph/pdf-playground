@@ -1,0 +1,13 @@
+{
+  "file": "signed.pdf",
+  "valid": true,
+  "signatures": [
+    {
+      "signer": "PDF playground example signer",
+      "valid": true,
+      "trusted_chain": true,
+      "timestamp_present": false,
+      "timestamp_valid": false
+    }
+  ]
+}
